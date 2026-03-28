@@ -1,0 +1,26 @@
+[
+  {
+    "task_id": "TS101",
+    "title": "Prepare project outline",
+    "priority": 3,
+    "category": "Academic"
+  },
+  {
+    "task_id": "TS102",
+    "title": "Attend team meeting",
+    "priority": 1,
+    "category": "Work"
+  },
+  {
+    "task_id": "TS103",
+    "title": "Buy weekly groceries",
+    "priority": 4,
+    "category": "Personal"
+  },
+  {
+    "task_id": "TS104",
+    "title": "Review lecture notes",
+    "priority": 2,
+    "category": "Academic"
+  }
+]

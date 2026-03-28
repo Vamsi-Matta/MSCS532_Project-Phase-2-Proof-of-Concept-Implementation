@@ -1,0 +1,66 @@
+[Running] python -u "e:\Python_Class_work\MSCS532_Project-Phase-2-Proof-of-Concept-Implementation\simulate_day.py"
+------------------------------------------------------------
+* LOADING INITIAL TASKS *
+------------------------------------------------------------
+Loaded TS101 - Prepare project outline
+Loaded TS102 - Attend team meeting
+Loaded TS103 - Buy weekly groceries
+Loaded TS104 - Review lecture notes
+------------------------------------------------------------
+* CURRENT TASK SUMMARY *
+------------------------------------------------------------
+{'task_id': 'TS101', 'title': 'Prepare project outline', 'priority': 3, 'category': 'Academic', 'status': 'Pending'}
+{'task_id': 'TS102', 'title': 'Attend team meeting', 'priority': 1, 'category': 'Work', 'status': 'Pending'}
+{'task_id': 'TS103', 'title': 'Buy weekly groceries', 'priority': 4, 'category': 'Personal', 'status': 'Pending'}
+{'task_id': 'TS104', 'title': 'Review lecture notes', 'priority': 2, 'category': 'Academic', 'status': 'Pending'}
+------------------------------------------------------------
+* VIEWING ONE TASK *
+------------------------------------------------------------
+{'task_id': 'TS101', 'title': 'Prepare project outline', 'priority': 3, 'category': 'Academic', 'status': 'Pending'}
+------------------------------------------------------------
+* UPDATING PRIORITY *
+------------------------------------------------------------
+Priority updated for TS101
+{'task_id': 'TS101', 'title': 'Prepare project outline', 'priority': 1, 'category': 'Academic', 'status': 'Pending'}
+------------------------------------------------------------
+* TASKS UNDER ACADEMIC CATEGORY *
+------------------------------------------------------------
+{'task_id': 'TS101', 'title': 'Prepare project outline', 'priority': 1, 'category': 'Academic', 'status': 'Pending'}
+{'task_id': 'TS104', 'title': 'Review lecture notes', 'priority': 2, 'category': 'Academic', 'status': 'Pending'}
+------------------------------------------------------------
+* NEXT READY TASK *
+------------------------------------------------------------
+{'task_id': 'TS102', 'title': 'Attend team meeting', 'priority': 1, 'category': 'Work', 'status': 'Pending'}
+------------------------------------------------------------
+* MARKING TASK AS COMPLETED *
+------------------------------------------------------------
+{'task_id': 'TS102', 'title': 'Attend team meeting', 'priority': 1, 'category': 'Work', 'status': 'Completed'}
+------------------------------------------------------------
+* REMOVING A TASK *
+------------------------------------------------------------
+{'task_id': 'TS101', 'title': 'Prepare project outline', 'priority': 1, 'category': 'Academic', 'status': 'Pending'}
+{'task_id': 'TS102', 'title': 'Attend team meeting', 'priority': 1, 'category': 'Work', 'status': 'Completed'}
+{'task_id': 'TS104', 'title': 'Review lecture notes', 'priority': 2, 'category': 'Academic', 'status': 'Pending'}
+------------------------------------------------------------
+* PROCESSING REMAINING TASKS *
+------------------------------------------------------------
+{'task_id': 'TS101', 'title': 'Prepare project outline', 'priority': 1, 'category': 'Academic', 'status': 'Pending'}
+{'task_id': 'TS104', 'title': 'Review lecture notes', 'priority': 2, 'category': 'Academic', 'status': 'Pending'}
+
+[Done] exited with code=0 in 0.2 seconds
+
+
+[Running] python -u "e:\Python_Class_work\MSCS532_Project-Phase-2-Proof-of-Concept-Implementation\validation_report.py"
+VALIDATION REPORT
+--------------------------------------------------
+Task added successfully: PASS
+Fetch task details works: PASS
+Category mapping works: PASS
+Priority retrieval works: PASS
+Priority update works: PASS
+Completion update works: PASS
+Removal works: PASS
+--------------------------------------------------
+Validation finished.
+
+[Done] exited with code=0 in 0.139 seconds
