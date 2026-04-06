@@ -28,3 +28,16 @@ Run the main simulation:
 ```bash
 python simulate_day.py
 python scheduler_core.py
+
+## Phase 3 Enhancements
+
+In Phase 3, the system was improved to address limitations identified in the proof-of-concept version.
+
+The main improvement focuses on handling outdated entries in the restock priority queue. When product quantities are updated multiple times, older values may still exist in the queue. To improve accuracy, the retrieval logic now validates entries before returning them.
+
+Additional enhancements include:
+- Improved input validation for product operations
+- Better handling of edge cases
+- Performance testing with larger datasets
+
+These changes make the system more reliable and closer to real-world usage.

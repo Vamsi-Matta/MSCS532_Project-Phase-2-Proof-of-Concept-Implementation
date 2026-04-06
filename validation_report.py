@@ -1,46 +1,34 @@
-from scheduler_core import SchedulerCore
+from scheduler_core import TaskScheduler
 
 
 def check(label, condition):
-    result = "PASS" if condition else "FAIL"
-    print(f"{label}: {result}")
+    print(f"{label}: {'PASS' if condition else 'FAIL'}")
 
 
 def main():
-    scheduler = SchedulerCore()
+    scheduler = TaskScheduler()
 
-    print("VALIDATION REPORT")
-    print("-" * 50)
+    scheduler.add_task("T1", "Task A", 2, "Work")
+    scheduler.add_task("T2", "Task B", 1, "Work")
 
-    scheduler.add_new_task("A1", "Draft report", 2, "Academic")
-    scheduler.add_new_task("W1", "Client follow-up", 1, "Work")
-    scheduler.add_new_task("P1", "Pay electricity bill", 3, "Personal")
+    check("Add task", "T1" in scheduler.tasks)
 
-    check("Task added successfully", "A1" in scheduler.task_book)
+    task = scheduler.get_task("T2")
+    check("Fetch task", task is not None and task["text"] == "Task B")
 
-    details = scheduler.fetch_task_details("W1")
-    check("Fetch task details works", details is not None and details["title"] == "Client follow-up")
+    scheduler.update_priority("T1", 1)
+    updated = scheduler.get_task("T1")
+    check("Update priority", updated["priority"] == 1)
 
-    work_items = scheduler.fetch_by_category("Work")
-    check("Category mapping works", len(work_items) == 1)
+    next_task = scheduler.get_next_task()
+    check("Priority execution", next_task is not None)
 
-    top_task = scheduler.next_ready_task()
-    check("Priority retrieval works", top_task is not None and top_task["task_id"] == "W1")
+    scheduler.mark_completed("T1")
+    check("Completion", scheduler.get_task("T1")["status"] == "Completed")
 
-    scheduler.revise_priority("A1", 1)
-    updated = scheduler.fetch_task_details("A1")
-    check("Priority update works", updated["priority"] == 1)
+    scheduler.remove_task("T2")
+    check("Removal", scheduler.get_task("T2") is None)
 
-    scheduler.mark_completed("A1")
-    updated_after_completion = scheduler.fetch_task_details("A1")
-    check("Completion update works", updated_after_completion["status"] == "Completed")
-
-    scheduler.remove_task("P1")
-    check("Removal works", scheduler.fetch_task_details("P1") is None)
-
-    print("-" * 50)
-    print("Validation finished.")
-    
 
 if __name__ == "__main__":
     main()

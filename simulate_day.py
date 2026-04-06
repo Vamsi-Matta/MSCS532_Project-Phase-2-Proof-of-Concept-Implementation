@@ -1,66 +1,53 @@
 import json
-from scheduler_core import SchedulerCore
+from scheduler_core import TaskScheduler
 
 
-def section(name):
-    print("-" * 60)
-    print(name)
-    print("-" * 60)
+def section(title):
+    print("\n" + "=" * 60)
+    print(title)
+    print("=" * 60)
 
 
-def load_seed_tasks(file_name):
-    with open(file_name, "r", encoding="utf-8") as file:
-        return json.load(file)
+def load_tasks():
+    with open("tasks_seed.json", "r") as f:
+        return json.load(f)
 
 
 def main():
-    scheduler = SchedulerCore()
-    seed_tasks = load_seed_tasks("tasks_seed.json")
+    scheduler = TaskScheduler()
 
-    section("* LOADING INITIAL TASKS *")
-    for item in seed_tasks:
-        scheduler.add_new_task(
-            item["task_id"],
-            item["title"],
-            item["priority"],
-            item["category"]
+    section("LOADING TASKS")
+    for t in load_tasks():
+        scheduler.add_task(
+            t["task_id"],
+            t["text"],
+            t["priority"],
+            t["category"]
         )
-        print(f"Loaded {item['task_id']} - {item['title']}")
+        print(f"Loaded {t['task_id']}")
 
-    section("* CURRENT TASK SUMMARY *")
-    for task in scheduler.summary():
-        print(task)
+    section("ALL TASKS")
+    for t in scheduler.list_all_tasks():
+        print(t)
 
-    section("* VIEWING ONE TASK *")
-    print(scheduler.fetch_task_details("TS101"))
+    section("UPDATE PRIORITY")
+    scheduler.update_priority("T1", 1)
+    print(scheduler.get_task("T1"))
 
-    section("* UPDATING PRIORITY *")
-    scheduler.revise_priority("TS101", 1)
-    print("Priority updated for TS101")
-    print(scheduler.fetch_task_details("TS101"))
+    section("CATEGORY VIEW")
+    for t in scheduler.get_tasks_by_category("Work"):
+        print(t)
 
-    section("* TASKS UNDER ACADEMIC CATEGORY *")
-    for task in scheduler.fetch_by_category("Academic"):
-        print(task)
+    section("NEXT TASK")
+    print(scheduler.get_next_task())
 
-    section("* NEXT READY TASK *")
-    print(scheduler.next_ready_task())
+    section("MARK COMPLETE")
+    scheduler.mark_completed("T2")
+    print(scheduler.get_task("T2"))
 
-    section("* MARKING TASK AS COMPLETED *")
-    scheduler.mark_completed("TS102")
-    print(scheduler.fetch_task_details("TS102"))
-
-    section("* REMOVING A TASK *")
-    scheduler.remove_task("TS103")
-    for task in scheduler.summary():
-        print(task)
-
-    section("* PROCESSING REMAINING TASKS *")
-    while True:
-        item = scheduler.next_ready_task()
-        if item is None:
-            break
-        print(item)
+    section("FINAL STATE")
+    for t in scheduler.list_all_tasks():
+        print(t)
 
 
 if __name__ == "__main__":
