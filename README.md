@@ -35,9 +35,22 @@ In Phase 3, the system was improved to address limitations identified in the pro
 
 The main improvement focuses on handling outdated entries in the restock priority queue. When product quantities are updated multiple times, older values may still exist in the queue. To improve accuracy, the retrieval logic now validates entries before returning them.
 
-Additional enhancements include:
-- Improved input validation for product operations
-- Better handling of edge cases
-- Performance testing with larger datasets
+Additional improvements include:
+- better handling of repeated priority updates
+- improved stability when working with larger datasets
+- structured validation of system behavior
+- performance testing to observe scalability
 
-These changes make the system more reliable and closer to real-world usage.
+## Performance Testing
+A performance testing script was added to evaluate how the scheduler behaves with increasing numbers of tasks.
+
+The test measures:
+- task insertion time
+- lookup performance
+- category retrieval efficiency
+- priority-based task selection
+
+To run the performance test:
+
+```bash
+python performance_check.py
